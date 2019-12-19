@@ -1,6 +1,6 @@
 # flutter_net
 
-A new Flutter application.
+基于Dio封装的http请求示例，支持单例，拦截器，baseUrl动态配置，基础参数封装，md5加密等
 
 ## Getting Started
 
