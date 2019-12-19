@@ -1,5 +1,5 @@
 class Address{
- static String BASE_URL = "https://api.douban.com/v2/movie/top250";
+ static String BASE_URL = "http://api.douban.com/";
 
- static String TEST_API ="";
+ static String TEST_API ="/v2/movie/in_theaters";
 }

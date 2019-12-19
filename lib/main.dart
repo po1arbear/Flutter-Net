@@ -1,7 +1,11 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_net/address.dart';
 import 'package:flutter_net/http_manager.dart';
 import 'package:flutter_net/result_data.dart';
+
+import 'data_helper.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,25 +52,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-   String  str = "";
+  String str = "";
 
-  void _incrementCounter() {
+  void _testRequest() async {
+    var params = DataHelper.getBaseMap();
+    params.clear();
+    //apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10
+    params["apikey"] = "0df993c66c0c636e29ecbb5344252a4a";
+    params["start"] = "0";
+    params["count"] = "10";
+    ResultData res =
+        await HttpManager.getInstance().get(Address.TEST_API, params);
+    setState(() {
+      str = res.toString();
+    });
 
-    HttpManager.getInstance().get("",null);
-
-
-
-  }
-
-  void testRequest() async{
-    ResultData res = await HttpManager.getInstance().get(Address.TEST_API, null);
-    if(res.isSuccess){
-      setState(() {
-        str = res.data.toString();
-        //此处可以用json_serializable构造实体类
-      });
-    }
-
+//    if (res.isSuccess) {
+//      setState(() {
+//        str = res.data.toString();
+//        //此处可以用json_serializable构造实体类
+//      });
+//    }
   }
 
   @override
@@ -104,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              str,
             ),
             Text(
               '$_counter',
@@ -114,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _testRequest,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
