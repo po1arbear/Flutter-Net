@@ -63,6 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
     ResultData res =
         await HttpManager.getInstance().get(Address.TEST_API, params);
     setState(() {
+      ///正确的方式是
+      /// if(res.isSuccess){
+      ///   再进行json解析
+      /// }else{
+      ///  错误情况处理
+      /// }
+      ///
+
       FilmEntity entity = FilmEntity.fromJson(res.data);
       _films = entity.subjects;
     });
@@ -100,10 +108,25 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         itemCount: _films.length,
       )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _testRequest,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      floatingActionButton: InkWell(
+        borderRadius: BorderRadius.circular(45),
+        onTap: _testRequest,
+        child: Container(
+          height: 80,
+          width: 80,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(45),
+          ),
+          child: Text("点击请求",style: TextStyle(color: Colors.white),),
+
+        ),
+//
+//        onPressed: _testRequest,
+//        tooltip: 'Increment',
+//        child: Icon(Icons.add),
+
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
