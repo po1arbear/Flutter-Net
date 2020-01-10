@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class LogsInterceptors extends InterceptorsWrapper {
   @override
-  onRequest(RequestOptions options) {
+  onRequest(RequestOptions options) async{
     print("请求baseUrl：${options.baseUrl}");
     print("请求url：${options.path}");
     print('请求头: ' + options.headers.toString());
@@ -13,7 +13,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  onResponse(Response response) {
+  onResponse(Response response)async {
     if (response != null) {
       var responseStr = response.toString();
     }
@@ -22,7 +22,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  onError(DioError err) {
+  onError(DioError err) async{
     print('请求异常: ' + err.toString());
     print('请求异常信息: ' + err.response?.toString() ?? "");
     return err;

@@ -3,11 +3,13 @@ import 'result_data.dart';
 
 class ResponseInterceptors extends InterceptorsWrapper {
   @override
-  onResponse(Response response) {
+  onResponse(Response response) async {
     RequestOptions option = response.request;
     try {
-      if (option.contentType != null &&
-          option.contentType.primaryType == "text") {
+
+      print("contentType---->"+option.contentType);
+
+      if (option.contentType != null && option.contentType.contains("text")) {
         return new ResultData(response.data, true, 200);
       }
 
