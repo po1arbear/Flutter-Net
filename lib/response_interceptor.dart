@@ -7,8 +7,6 @@ class ResponseInterceptors extends InterceptorsWrapper {
     RequestOptions option = response.request;
     try {
 
-      print("contentType---->"+option.contentType);
-
       if (option.contentType != null && option.contentType.contains("text")) {
         return new ResultData(response.data, true, 200);
       }
