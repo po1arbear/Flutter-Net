@@ -1,25 +1,25 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_net/code.dart';
-import 'logs_interceptor.dart';
+import 'package:flutter_net/dio_log_interceptor.dart';
 import 'response_interceptor.dart';
 import 'result_data.dart';
 import 'address.dart';
+
 class HttpManager {
   static HttpManager _instance = HttpManager._internal();
   Dio _dio;
 
- static const CODE_SUCCESS = 200;
+  static const CODE_SUCCESS = 200;
   static const CODE_TIME_OUT = -1;
-
 
   factory HttpManager() => _instance;
 
   ///通用全局单例，第一次使用时初始化
   HttpManager._internal({String baseUrl}) {
     if (null == _dio) {
-      _dio = new Dio(new BaseOptions(
-          baseUrl: Address.BASE_URL, connectTimeout: 15000));
-      _dio.interceptors.add(new LogsInterceptors());
+      _dio = new Dio(
+          new BaseOptions(baseUrl: Address.BASE_URL, connectTimeout: 15000));
+      _dio.interceptors.add(new DioLogInterceptor());
       _dio.interceptors.add(new ResponseInterceptors());
     }
   }
@@ -65,6 +65,7 @@ class HttpManager {
 
     return response.data;
   }
+
   ///通用的POST请求
   post(api, params, {noTip = false}) async {
     Response response;
