@@ -83,6 +83,19 @@ class _MyHomePageState extends State<MyHomePage> {
 //    }
   }
 
+  void _print() {
+    String a = "asdasd";
+    for (var i = 0; i < 1000; i++) {
+      a += "\nfjaskdfasjdhf";
+    }
+    print(a);
+  }
+
+  void printWrapped(String text) {
+    final pattern = new RegExp('.{1,800}'); // 800 is the size of each chunk
+    pattern.allMatches(text).forEach((match) => print(match.group(0)));
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -119,14 +132,15 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.blue,
             borderRadius: BorderRadius.circular(45),
           ),
-          child: Text("点击请求",style: TextStyle(color: Colors.white),),
-
+          child: Text(
+            "点击请求",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
 //
 //        onPressed: _testRequest,
 //        tooltip: 'Increment',
 //        child: Icon(Icons.add),
-
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

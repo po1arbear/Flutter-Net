@@ -20,6 +20,7 @@ class HttpManager {
       _dio = new Dio(
           new BaseOptions(baseUrl: Address.BASE_URL, connectTimeout: 15000));
       _dio.interceptors.add(new DioLogInterceptor());
+//      _dio.interceptors.add(new PrettyDioLogger());
       _dio.interceptors.add(new ResponseInterceptors());
     }
   }
@@ -32,7 +33,7 @@ class HttpManager {
     }
   }
 
-  //用于指定特定域名，比如cdn和kline首次的http请求
+  //用于指定特定域名
   HttpManager _baseUrl(String baseUrl) {
     if (_dio != null) {
       _dio.options.baseUrl = baseUrl;
@@ -51,7 +52,7 @@ class HttpManager {
   }
 
   ///通用的GET请求
-  get(api, params, {noTip = false}) async {
+  get(api, params) async {
     Response response;
     try {
       response = await _dio.get(api, queryParameters: params);
@@ -67,7 +68,7 @@ class HttpManager {
   }
 
   ///通用的POST请求
-  post(api, params, {noTip = false}) async {
+  post(api, params) async {
     Response response;
 
     try {
