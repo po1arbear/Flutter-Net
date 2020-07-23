@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_net/code.dart';
 import 'package:flutter_net/dio_log_interceptor.dart';
+import 'package:flutter_net/loading_utils.dart';
 import 'response_interceptor.dart';
 import 'result_data.dart';
 import 'address.dart';
@@ -52,11 +53,21 @@ class HttpManager {
   }
 
   ///通用的GET请求
-  get(api, params) async {
+  get(api, {params, withLoading = true}) async {
+    if (withLoading) {
+      LoadingUtils.show();
+    }
+
     Response response;
     try {
       response = await _dio.get(api, queryParameters: params);
+      if (withLoading) {
+        LoadingUtils.dismiss();
+      }
     } on DioError catch (e) {
+      if (withLoading) {
+        LoadingUtils.dismiss();
+      }
       return resultError(e);
     }
 
@@ -68,12 +79,22 @@ class HttpManager {
   }
 
   ///通用的POST请求
-  post(api, params) async {
+  post(api, {params, withLoading = true}) async {
+    if (withLoading) {
+      LoadingUtils.show();
+    }
+
     Response response;
 
     try {
       response = await _dio.post(api, data: params);
+      if (withLoading) {
+        LoadingUtils.dismiss();
+      }
     } on DioError catch (e) {
+      if (withLoading) {
+        LoadingUtils.dismiss();
+      }
       return resultError(e);
     }
 

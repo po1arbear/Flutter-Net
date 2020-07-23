@@ -59,10 +59,6 @@ class DioLogInterceptor extends Interceptor {
     if (response.data != null) {
       responseStr += "- BODY:\n ${_parseResponse(response)}";
     }
-
-    print("hahahah--->" + responseStr.length.toString());
-    String sub = responseStr.substring(0, 5000);
-//    print(responseStr);
     printWrapped(responseStr);
     return response;
   }
@@ -97,7 +93,8 @@ extension Map2StringEx on Map {
           var temp = value.mapToStructureString(indentation: indentation + 2);
           result += "\n$indentationStr" + "\"$key\" : $temp,";
         } else if (value is List) {
-          result += "\n$indentationStr" + "\"$key\" : ${value.listToStructureString(indentation: indentation + 2)},";
+          result += "\n$indentationStr" +
+              "\"$key\" : ${value.listToStructureString(indentation: indentation + 2)},";
         } else {
           result += "\n$indentationStr" + "\"$key\" : \"$value\",";
         }
