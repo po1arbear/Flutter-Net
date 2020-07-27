@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_net/code.dart';
-import 'package:flutter_net/dio_log_interceptor.dart';
+import 'package:flutter_net/net/code.dart';
+import 'package:flutter_net/net/dio_log_interceptor.dart';
 import 'package:flutter_net/loading_utils.dart';
 import 'response_interceptor.dart';
 import 'result_data.dart';

@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_net/address.dart';
+import 'package:flutter_net/net/address.dart';
 import 'package:flutter_net/film_entity.dart';
-import 'package:flutter_net/http_manager.dart';
-import 'package:flutter_net/result_data.dart';
-import 'data_helper.dart';
+import 'package:flutter_net/net/http_manager.dart';
+import 'package:flutter_net/net/result_data.dart';
+import 'net/data_helper.dart';
 
 void main() => runApp(MyApp());
 
