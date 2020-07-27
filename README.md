@@ -2,15 +2,16 @@
 
 基于Dio封装的http请求示例，支持单例，拦截器，baseUrl动态配置，基础参数封装，md5加密等
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+#### 新增了一些使用的特性
+- 无侵入式的请求loading配置，不用特地地去管理loading，通过一个字段就能控制
 
-A few resources to get you started if this is your first Flutter project:
+![请求时loading](https://upload-images.jianshu.io/upload_images/2894274-68c29d938e4b374b.gif?imageMogr2/auto-orient/strip)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- 清晰、详细的日志打印，大幅实际开发中的接口调试效率
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image.png](https://upload-images.jianshu.io/upload_images/2894274-c130a7199c5a6faa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640)
+
+
+
+
