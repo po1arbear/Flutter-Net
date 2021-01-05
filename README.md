@@ -415,7 +415,7 @@ void request() async {
 ```
 
 ##### Demo地址 https://github.com/po1arbear/Flutter-Net.git
-如果觉得有帮助，希望能给个star鼓励下，如果不能满足你的需求，欢迎提issue : )
+如果觉得有帮助，欢迎star鼓励 : )
 
 
 ## Stargazers over time
